@@ -147,6 +147,7 @@ function App() {
     note: "",
   });
   const [toast, setToast] = useState("");
+  const [showRsvpModal, setShowRsvpModal] = useState(false);
   const countdown = useCountdown();
 
   useEffect(() => {
@@ -272,7 +273,7 @@ function App() {
       attendance: "coming",
       note: "",
     });
-    showToast("RSVP sent to the family sheet.");
+    setShowRsvpModal(true);
   }
 
   const whatsappText = encodeURIComponent(
@@ -613,6 +614,33 @@ function App() {
       <div className={toast ? "toast show" : "toast"} role="status">
         {toast}
       </div>
+
+      {showRsvpModal && (
+        <div className="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
+          <div className="modal-card reveal">
+            <button className="modal-close" onClick={() => setShowRsvpModal(false)} type="button" aria-label="Close popup">
+              &times;
+            </button>
+            <div className="modal-header">
+              <Heart className="modal-heart-icon" aria-hidden="true" />
+              <h3 id="rsvp-modal-title">Your RSVP has been received</h3>
+            </div>
+            <p className="modal-body">
+              Thank you! We look forward to celebrating this special morning with you. You can add the ceremony to your calendar or join the live stream.
+            </p>
+            <div className="modal-actions">
+              <a className="button primary" href={CALENDAR_URL} rel="noreferrer" target="_blank" onClick={() => setShowRsvpModal(false)}>
+                <CalendarPlus aria-hidden="true" />
+                Add to Calendar
+              </a>
+              <a className="button ghost" href={STREAMING_URL} rel="noreferrer" target="_blank" onClick={() => setShowRsvpModal(false)}>
+                <MessageCircleHeart aria-hidden="true" />
+                Streaming Link
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

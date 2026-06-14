@@ -1464,3 +1464,108 @@ textarea:focus {
     height: 6px;
   }
 }
+
+/* Modal Popup Styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  background: rgba(46, 26, 34, 0.45);
+  backdrop-filter: blur(8px);
+  padding: 16px;
+  animation: fade-in 300ms ease-out;
+}
+
+.modal-card {
+  width: min(440px, 100%);
+  background: var(--white);
+  border: 2px solid var(--sun);
+  border-radius: 24px;
+  box-shadow: var(--shadow-lg);
+  padding: 36px 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 310;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--rose);
+  line-height: 1;
+  padding: 4px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  color: var(--wine-dark);
+  transform: scale(1.1);
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.modal-heart-icon {
+  width: 44px;
+  height: 44px;
+  color: var(--wine);
+  animation: heart-beat 1.6s infinite ease-in-out;
+}
+
+@keyframes heart-beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 1.85rem;
+  color: var(--wine-dark);
+  line-height: 1.25;
+}
+
+.modal-body {
+  margin: 0 0 26px 0;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #4b3940;
+}
+
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.modal-actions .button {
+  width: 100%;
+  margin: 0;
+}
+
+@media (min-width: 480px) {
+  .modal-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
