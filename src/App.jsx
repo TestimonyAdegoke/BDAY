@@ -325,11 +325,10 @@ function App() {
               <span>June</span>
             </div>
             <div>
-              <p className="eyebrow">With joy and gratitude</p>
+              <p className="eyebrow">JOIN US FOR</p>
               <h1>Our Daughter's Naming Ceremony</h1>
               <p>
-                A morning set apart for her name, her blessing, and the circle
-                of people who will speak love over her life.
+                A morning set apart for her name, her blessing, and prophecies.
               </p>
               <div className="action-row">
                 <button id="hero-rsvp-btn" className="button primary" onClick={() => goToSlide(4)} type="button">
@@ -348,7 +347,6 @@ function App() {
             <ChevronDown aria-hidden="true" />
           </button>
           <button id="next-peek-btn" className="next-peek" onClick={() => goToSlide(1)} type="button">
-            <span>Begin the blessing path</span>
             <strong>Monday, 15 June - 11:00 AM WAT</strong>
           </button>
         </section>
@@ -356,7 +354,7 @@ function App() {
         <section className="slide ceremony-slide" data-slide-index="1" id="ceremony">
           <div className="slide-inner ceremony-ledger">
             <div className="ledger-heading reveal">
-              <p className="eyebrow">Blessing morning</p>
+              
               <h2>11:00 AM WAT</h2>
               <p className="lead">
                 Prayers, names, laughter, and the first memories of a beautiful
@@ -383,7 +381,7 @@ function App() {
                 <Music2 aria-hidden="true" />
                 <div>
                   <span>Atmosphere</span>
-                  <strong>Warm, graceful, joyful</strong>
+                  <strong>Warm, graceful, joyful & prophetic</strong>
                 </div>
               </article>
               <article className="strip-card">

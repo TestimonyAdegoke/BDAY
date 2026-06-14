@@ -1,6 +1,14 @@
-const SPREADSHEET_ID = "1rw2WDAuwsyQFpg3oEFapb_Kr7T4e9Uv6RwpubyAraS4";
 const RSVP_SHEET = "RSVPs";
 const PRAYER_SHEET = "Blessings";
+
+function getSpreadsheet_() {
+  try {
+    return SpreadsheetApp.getActiveSpreadsheet();
+  } catch (e) {
+    // Fallback if not container-bound
+    return SpreadsheetApp.openById("1rw2WDAuwsyQFpg3oEFapb_Kr7T4e9Uv6RwpubyAraS4");
+  }
+}
 
 function doPost(event) {
   const data = JSON.parse(event.postData.contents || "{}");
@@ -37,7 +45,7 @@ function doGet(event) {
 }
 
 function ensureSheets_() {
-  const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const spreadsheet = getSpreadsheet_();
   const rsvpSheet = getOrCreateSheet_(spreadsheet, RSVP_SHEET);
   const prayerSheet = getOrCreateSheet_(spreadsheet, PRAYER_SHEET);
 
@@ -53,7 +61,7 @@ function ensureSheets_() {
 }
 
 function appendRsvp_(payload) {
-  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(RSVP_SHEET);
+  const sheet = getSpreadsheet_().getSheetByName(RSVP_SHEET);
   sheet.appendRow([
     new Date(),
     payload.name || "",
@@ -65,12 +73,12 @@ function appendRsvp_(payload) {
 }
 
 function appendPrayer_(payload) {
-  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(PRAYER_SHEET);
+  const sheet = getSpreadsheet_().getSheetByName(PRAYER_SHEET);
   sheet.appendRow([new Date(), payload.name || "Guest", payload.text || ""]);
 }
 
 function readPrayers_() {
-  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(PRAYER_SHEET);
+  const sheet = getSpreadsheet_().getSheetByName(PRAYER_SHEET);
   const lastRow = sheet.getLastRow();
 
   if (lastRow < 2) {
